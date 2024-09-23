@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Category Prediction</title>
+    <style>
+      
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 40px;
+            background-color:grey;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    
+    <div class="container" style="background:#d5f4e6;color:black;">
+        <h1>Add resume (pdf,dox,txt)</h2>
+        <form action="/resume/add/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="resume" accept=".pdf, .txt" required>
+            <br>
+            <input style="background:grey;color:yellow;" type="submit" value="Submit">
+            <br>
+        </form>
+
+      
+        
+<div class="container" style="background:white;color:black;">
+
+    {% if name %}
+    <h1> extracted information<h2>
+
+        <p><strong>Name:</strong> {{name}}</p>
+    {% endif %}
+    {% if gmail %}
+        <p><strong>Email (Gmail):</strong> {{ gmail }}</p>
+    {% endif %}
+    {% if skills %}
+        <p><strong>Skills:</strong> {{ skills|join:", " }}</p>
+    {% endif %}
+    {% if education %}
+        <p><strong>Education:</strong> {{ education|join:", " }}</p>
+    {% endif %}
+    {% if number %}
+    <p><strong>Phone number:</strong> {{ number}}</p>
+{% endif %}
+{% if langauages %}
+<p><strong>languages:</strong> {{ languages| join:", "}}</p>
+{% endif %}
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+</div>
+    </div>
+
+</body>
+
+</html>
